@@ -1,18 +1,45 @@
-'use strict';
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+const calendar = google.calendar("v3");
 
-module.exports.hello = async (event) => {
+const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"]; // Scope sets access levels. This is read-only
+
+// stored in credentials variable are requested values to generate authentication URL to access API
+const credentials = {
+  client_id: process.env.CLIENT_ID,
+  project_id: process.env.PROJECT_ID,
+  client_secret: process.env.CLIENT_SECRET,
+  calendar_id: process.env.CALENDAR_ID, // all values with process.env are stored in config.json
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  redirect_uris: ["https://JackOliCode.github.io/meet/"],
+  javascript_origins: ["https://JackOliCode.github.io", "http://localhost:3000"],
+};
+
+const { client_secret, client_id, redirect_uris, calendar_id } = credentials; // credentials destructured 
+
+const oAuth2Client = new google.auth.OAuth2(
+  client_id,
+  client_secret,
+  redirect_uris[0]
+);
+
+module.exports.getAuthURL = async () => {
+  // generate URL so users can log in with google
+  const authUrl = oAuth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: SCOPES, // Scopes array passed to the `scope` option.
+  });
+
   return {
     statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+    body: JSON.stringify({
+      authUrl: authUrl,
+    }),
   };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
