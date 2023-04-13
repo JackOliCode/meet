@@ -23,7 +23,7 @@
       <h1>OAuth2 Test</h1>
         <h4><b>Step 1:</b> Get OAuth URL</h4>
         <p>Click the button below to get your OAuth URL.</p>
-        <button id="getCode">Get OAuth URL</button>
+        <button id="getURL">Get OAuth URL</button>
         <p id="result"></p>
         <a id="authURL" href target="_blank">Click to authorize</a>
         <!-- Step 2 code below -->
@@ -43,7 +43,7 @@
 
     <!-- New line of Code for Script starts here -->
     <script type="text/javascript">
-        const getCodeElement = document.getElementById("getCode");
+        const getURLElement = document.getElementById("getURL");
         const resultElement = document.getElementById("result");
         const resultLink = document.getElementById("authURL");
         const getAuthURL = "https://wwrfi9y0u0.execute-api.eu-west-2.amazonaws.com/dev/api/get-auth-url";
@@ -66,7 +66,7 @@
       const codeValue = document.getElementById("code");
       const getAccessToken = document.getElementById("getToken");
       const accessTokenElement = document.getElementById("accessToken");
-      const getToken = "https://wwrfi9y0u0.execute-api.eu-west-2.amazonaws.com/dev/api/token/";
+      const getToken = "https://wwrfi9y0u0.execute-api.eu-west-2.amazonaws.com/dev/api/token";
 
       getAccessToken.onclick = function () {
         let code = codeValue.value;
