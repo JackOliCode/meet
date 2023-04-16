@@ -5,21 +5,23 @@ import { mockData } from '../mock-data';
 import { extractLocations } from '../api';
 
 describe('<CitySearch /> component', () => {
+    let locations, CitySearchWrapper;
+    beforeAll(() => {
+        locations = extractLocations(mockData);
+        CitySearchWrapper = shallow(<CitySearch locations={locations} />); 
+    }); //locations; the superset of all locations; has been passed to the shallow CitySearch component
+
     test('render text input', () => {
-        const CitySearchWrapper = shallow(<CitySearch />);
         expect(CitySearchWrapper.find('.city')).toHaveLength(1); //checks whether an element with the class name city exists within the CitySearchWrapper
     });
     test('renders a list of suggestions', () => {
-        const CitySearchWrapper = shallow(<CitySearch />);
         expect(CitySearchWrapper.find('.suggestions')).toHaveLength(1);
     });
     test('renders text input correctly', () => {
-        const CitySearchWrapper = shallow(<CitySearch />);
         const query = CitySearchWrapper.state('query'); // sets query to the city that is typed into search box
         expect(CitySearchWrapper.find('.city').prop('value')).toBe(query);
     });
     test('change state when text input changes', () => {
-        const CitySearchWrapper = shallow(<CitySearch />);
         CitySearchWrapper.setState({
             query: 'Munich'
         });
@@ -29,7 +31,6 @@ describe('<CitySearch /> component', () => {
     });
     test('render list of suggestions correctly', () => {
         const locations = extractLocations(mockData); //This variable will contain the set of distinct locations from the mockData events list
-        const CitySearchWrapper = shallow(<CitySearch />);
         CitySearchWrapper.setState({ suggestions: locations }); // set the suggestions state to the full list of mock locations + 1
         const suggestions = CitySearchWrapper.state('suggestions');
         expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1);
@@ -37,4 +38,15 @@ describe('<CitySearch /> component', () => {
             expect(CitySearchWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i]);
           }
     });
+    test('suggestion list match the query when changed', () => {
+        CitySearchWrapper.setState({ query: '', suggestions: [] }); // query and suggestion set to null/empty
+        CitySearchWrapper.find(".city").simulate("change", {
+          target: { value: "Berlin" },
+        });
+        const query = CitySearchWrapper.state("query");
+        const filteredLocations = locations.filter((location) => {
+          return location.toUpperCase().indexOf(query.toUpperCase()) > -1;
+        });
+        expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
+      });
 });

@@ -10,8 +10,14 @@ state = {
 
 handleInputChanged = (event) => { // event handler for <input> for the change event
     const value = event.target.value;
-    this.setState({ query: value });
-    }
+    const suggestions = this.props.locations.filter((location) => { //this.props.locations within the function because you’ll be passing it from the App component later on
+        return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
+    });
+    this.setState({ 
+        query: value,
+        suggestions,
+    });
+    };
 
 render() {
     return (
