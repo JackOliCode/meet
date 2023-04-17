@@ -19,6 +19,12 @@ handleInputChanged = (event) => { // event handler for <input> for the change ev
     });
     };
 
+handleItemClicked = (suggestion) => {
+    this.setState({
+        query: suggestion
+    });
+}
+
 render() {
     return (
       <div className="CitySearch">
@@ -30,7 +36,10 @@ render() {
         />
         <ul className="suggestions">
             {this.state.suggestions.map((suggestion) => ( //mapping through array and returning singular suggestion
-                <li key={suggestion}>{suggestion}</li>
+                <li 
+                key={suggestion}
+                onClick={() => this.handleItemClicked(suggestion)} // the suggestion being passed to handleItemClicked() is the variable that’s being passed to the map loop function’s callback
+                >{suggestion}</li>
             ))}
             <li key='all'>
                 <b>See all cities</b>

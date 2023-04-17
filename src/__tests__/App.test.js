@@ -19,5 +19,9 @@ describe('<App /> component', () => { // new scope
         expect(AppWrapper.find(CitySearch)).toHaveLength(1);
       });
 
+      /* test('render NumberOfEvents', () => {
+        expect(AppWrapper.find(NumberofEvents)).toHaveLength(1);
+      });
+*/
 
 });
