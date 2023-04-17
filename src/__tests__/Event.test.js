@@ -25,7 +25,7 @@ describe('<Event /> component', () => { // scope only check Event component
         expect(EventWrapper.state('showDetails')).toBe(false); // make sure showDetails state is initially false
         EventWrapper.find('.event_details').simulate('click'); // simulate a click on the "Details" button
         expect(EventWrapper.state('showDetails')).toBe(true); // make sure showDetails state is now true
-        expect(EventWrapper.find('h1')).toHaveLength(1); // make sure the "About Event" heading is present
+        expect(EventWrapper.find('.aboutEvent')).toHaveLength(1); // make sure the "About Event" heading is present
         expect(EventWrapper.find('.event_link')).toHaveLength(1); // make sure the link to Google Calendar is present
         expect(EventWrapper.find('.event_description')).toHaveLength(1); // make sure the description element is present
     });
