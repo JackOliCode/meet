@@ -13,11 +13,13 @@ describe('<NumberOfEvents /> component', () => {
         const query = NumberOfEventsWrapper.state('query');
         expect(NumberOfEventsWrapper.find('.numberInput').prop('value')).toBe(query);
     });
+    test('change state when number input changes', () => {
+        const NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+        NumberOfEventsWrapper.setState({
+            query: 32
+        });
+        const eventObject = { target: { value: 16 }};
+        NumberOfEventsWrapper.find('.numberInput').simulate('change', eventObject);
+        expect(NumberOfEventsWrapper.state('query')).toBe(16);
 });
-
-/* tests to make;
-There needs to be 32 events displayed 'render 32 events as default' - eventList
-
-number 32 needs to be displayed on NOE component - NOE
-
-*/
+});
