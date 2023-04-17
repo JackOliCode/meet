@@ -8,6 +8,7 @@ class Event extends Component {
         <div className="event_time"></div>;
         <div className="event_summary"></div>;
         <div className="event_location"></div>;
+        <button className="event_details">Details</button>
     </div>
   );
 }
