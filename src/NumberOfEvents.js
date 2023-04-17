@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 class NumberOfEvents extends Component {
+    state = {
+        query: '32',
+    }
 
     render() {
         return (
@@ -8,6 +11,7 @@ class NumberOfEvents extends Component {
             <input
                 type="number"
                 className="numberInput"
+                value={this.state.query}
             />
           </div>
         );
