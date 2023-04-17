@@ -1,14 +1,39 @@
 import React, { Component } from "react";
 
 class Event extends Component {
+    state = {
+        showDetails: false, // sets current state to have showDetails hidden
+    };
+
+    handleDetailsClick = () => {
+        this.setState((previousState) => ({
+          showDetails: !previousState.showDetails, //sets the state of showDetails to the opposite of what it was.
+        }));
+      };
+
+
   render() {
+    const { event } = this.props; // used to extract the event prop from eventsList
+    const { showDetails } = this.state;
+
     return (
     <div className="event">
         <div className="event_name"></div>;
         <div className="event_time"></div>;
         <div className="event_summary"></div>;
         <div className="event_location"></div>;
-        <button className="event_details">Details</button>
+        {showDetails && ( //conditional rendering statement which lets me conditionally render a block of elements based on a certain condition.
+            <>
+            <h1>About Event</h1>
+            <a
+              className="event_link"
+              href={event.htmlLink}>
+                See details on Google Calendar
+              </a>
+            <div className="event_description"></div>
+            </>
+        )} 
+        <button className="event_details" onClick={this.handleDetailsClick}>Details</button>
     </div>
   );
 }
