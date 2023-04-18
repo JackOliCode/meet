@@ -3,17 +3,20 @@ import { shallow } from 'enzyme';
 import NumberOfEvents from '../NumberOfEvents';
 
 describe('<NumberOfEvents /> component', () => {
+    let NumberOfEventsWrapper;
+    beforeAll(() => {
+        NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    });
+
+
     test('render number input', () => {
-        const NumberOfEventsWrapper = shallow(<NumberOfEvents />);
         expect(NumberOfEventsWrapper.find('.numberInput')).toHaveLength(1);
     });
     test('rendered number input is equal to 32', () => {
-        const NumberOfEventsWrapper = shallow(<NumberOfEvents />);
         const query = NumberOfEventsWrapper.state('query');
         expect(NumberOfEventsWrapper.find('.numberInput').prop('value')).toBe(query);
     });
     test('change state when number input changes', () => {
-        const NumberOfEventsWrapper = shallow(<NumberOfEvents />);
         NumberOfEventsWrapper.setState({
             numberOfEvents: 32
         });
