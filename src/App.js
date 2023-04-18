@@ -16,10 +16,13 @@ class App extends Component {
       <div className="App">
         <CitySearch locations={this.state.locations} />
         <EventList events={this.state.events} />
-        <NumberOfEvents />
+        <NumberOfEvents /> 
       </div>
     );
   }
 }
 
 export default App;
+
+
+// consider whether you need to pass events prop to NOE events={this.state.events} ?
