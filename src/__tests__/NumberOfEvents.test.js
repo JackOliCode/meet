@@ -16,10 +16,14 @@ describe('<NumberOfEvents /> component', () => {
     test('change state when number input changes', () => {
         const NumberOfEventsWrapper = shallow(<NumberOfEvents />);
         NumberOfEventsWrapper.setState({
-            query: 32
+            numberOfEvents: 32
         });
         const eventObject = { target: { value: 16 }};
         NumberOfEventsWrapper.find('.numberInput').simulate('change', eventObject);
         expect(NumberOfEventsWrapper.state('query')).toBe(16);
 });
 });
+
+
+
+// think I need to extract the li items from EventList and then 

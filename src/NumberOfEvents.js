@@ -5,6 +5,11 @@ class NumberOfEvents extends Component {
         query: 32,
     }
 
+    handleInputChanged = (event) => {
+        const value = event.target.value;
+        this.setState({ query: value });
+    }
+
     render() {
         return (
           <div className="NOfE">
@@ -12,6 +17,7 @@ class NumberOfEvents extends Component {
                 type="number"
                 className="numberInput"
                 value={this.state.query}
+                onChange={this.handleInputChanged}
             />
           </div>
         );
