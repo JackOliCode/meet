@@ -5,6 +5,7 @@ import EventList from '../EventList';
 import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
 
+
 // ------- UNIT TESTS START HERE --------- //
 describe('<App /> component', () => { // new scope 
     let AppWrapper;
@@ -35,7 +36,13 @@ describe('<App /> integration', () => {
     expect(AppEventsState).not.toEqual(undefined); //  test checks whether the state of events isn’t undefined. necessary otherwise comparison below could pass with events being equal
     expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState); //compare the state of App’s events with EventList's events prop to ensure it’s been passed correctly
     AppWrapper.unmount(); // “clean up” your DOM after each test using a function called unmount()
-
+  });
+  test('App passes "locations" state as a prop to CitySearch', () => {
+    const AppWrapper = mount(<App />);
+    const AppLocationsState = AppWrapper.state('locations');
+    expect(AppLocationsState).not.toEqual(undefined);
+    expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
+    AppWrapper.unmount();
   });
 
 });
