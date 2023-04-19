@@ -59,4 +59,12 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(eventsToShow); //compares whether the state of events actually takes the same array as the events that resulted from the filtering process in the previous step
     AppWrapper.unmount();
 });
+  test('get list of all events when user selects "See all cities"', async () => {
+    const AppWrapper = mount(<App />);
+    const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
+    await suggestionItems.at(suggestionItems.length - 1).simulate('click');
+    const allEvents = await getEvents();
+    expect(AppWrapper.state('events')).toEqual(allEvents);
+    AppWrapper.unmount();
+  });
 });

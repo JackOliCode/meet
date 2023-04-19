@@ -43,7 +43,7 @@ render() {
                 onClick={() => this.handleItemClicked(suggestion)} // the suggestion being passed to handleItemClicked() is the variable that’s being passed to the map loop function’s callback
                 >{suggestion}</li>
             ))}
-            <li key='all'>
+            <li onClick={() => this.handleItemClicked("all")}>
                 <b>See all cities</b>
             </li>
         </ul>

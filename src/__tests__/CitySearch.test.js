@@ -8,7 +8,7 @@ describe('<CitySearch /> component', () => {
     let locations, CitySearchWrapper;
     beforeAll(() => {
         locations = extractLocations(mockData);
-        CitySearchWrapper = shallow(<CitySearch locations={locations} />); 
+        CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => {}} />); 
     }); //locations; the superset of all locations; has been passed to the shallow CitySearch component
 
     test('render text input', () => {
