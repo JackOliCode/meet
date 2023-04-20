@@ -37,23 +37,28 @@ input[type="number"] {
 }
 
 .city {
-  width: 250px;
+  width: 50%;
+  max-width: 250px;
+}
+
+.number {
+  width: 25%;
+  max-width: 125px;
 }
 
 .CitySearch {
   display: flex;
-  flex-direction: column;
-  flex-basis: 300px;
-  max-width: 300px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: auto;
   position: relative;
 }
 
 .suggestions {
-  width: 250px;
+  width: 100%;
   position: absolute;
   z-index: 2;
-  align-self: center;
   margin: 0;
   top: 43px;
   font-size: 14px;
@@ -76,9 +81,18 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+  grid-gap: 20px;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
 .event {
   padding: 10px 10px 35px;
-  margin-bottom: 10px;
   text-align: left;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -115,7 +129,8 @@ input[type="number"] {
 }
 
 .numberOfEvents {
-  width: 200px;
+  width: 25%;
+  max-width: 200px;
   margin: 20px auto;
   text-align: center;
 }
@@ -159,7 +174,7 @@ input[type="number"] {
   margin: 1rem;
 }
 
-.google-btn {
+.google-btn { 
   width: 184px;
   height: 42px;
   margin: 1rem;
@@ -210,4 +225,41 @@ input[type="number"] {
     min-width: auto;
     margin: 0 auto;
   }
+}
+
+.App {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.CitySearch {
+  flex-basis: 50%;
+  max-width: 50%;
+  margin: 0;
+}
+
+.city {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.numberOfEvents {
+  flex-basis: 50%;
+  max-width: 50%;
+  margin: 0;
+}
+
+.numberOfEvents input {
+  width: 50%;
+}
+
+.EventList {
+  flex-basis: 80%;
+  max-width: 80%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
 }
