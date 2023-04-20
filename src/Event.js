@@ -18,21 +18,21 @@ class Event extends Component {
 
     return (
     <div className="event">
-        <h1 className="event_name">/</h1>;
-        <p className="event_time"></p>;
+        <h1 className="event_name">{event.summary}</h1>
+        <p className="event_time">{event.start.dateTime}</p>
         <div>
-            <span className="event_summary"></span>;
-            <span className="event_location"></span>;
+            <span className="event_summary">{event.summary}</span>;
+            <span className="event_location">{event.location}</span>;
         </div>
         {showDetails && ( //conditional rendering statement which lets me conditionally render a block of elements based on a certain condition.
             <>
-            <h1 className="aboutEvent">About Event</h1>
+            <h2 className="aboutEvent">About Event</h2>
             <a
               className="event_link"
               href={event.htmlLink}>
                 See details on Google Calendar
               </a>
-            <p className="event_description"></p>
+            <p className="event_description">{event.description}</p>
             </>
         )} 
         <button className="event_details" onClick={this.handleDetailsClick}>Details</button>
