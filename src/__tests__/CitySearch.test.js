@@ -49,11 +49,16 @@ describe('<CitySearch /> component', () => {
         });
         expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations); // toEqual()because the values being compared are categorized as complex data types
     });
-      test("selecting a suggestion should change query state", () => {
+    test("selecting a suggestion should change query state", () => {
         CitySearchWrapper.setState({
             query: 'Berlin' });
             const suggestions = CitySearchWrapper.state('suggestions');
             CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
             expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
     });
+    test("selecting CitySearch input reveals the suggestions list", () => {
+        CitySearchWrapper.find('.city').simulate('focus');
+        expect(CitySearchWrapper.state('showSuggestions')).toBe(true); // expecting the value of the showSuggestions state to be true 
+        expect(CitySearchWrapper.find('.suggestions').prop('style')).not.toEqual({ display: 'none' });
+      }); // --------- showSuggestion state will be used as a boolean flag to determine whether to show the suggestions list or not.
 });
