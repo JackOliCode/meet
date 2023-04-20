@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 class CitySearch extends Component {
 state = {
     query: '',
-    suggestions: []
+    suggestions: [],
+    showSuggestions: undefined
     }
 
 handleInputChanged = (event) => { // event handler for <input> for the change event
@@ -21,8 +22,10 @@ handleInputChanged = (event) => { // event handler for <input> for the change ev
 
 handleItemClicked = (suggestion) => {
     this.setState({
-        query: suggestion
+        query: suggestion,
+        showSuggestions: false
     });
+
 
     this.props.updateEvents(suggestion);
 }
@@ -35,8 +38,9 @@ render() {
             className='city'
             value={this.state.query}
             onChange={this.handleInputChanged}
+            onFocus={() => { this.setState({ showSuggestions: true }) }} 
         />
-        <ul className="suggestions">
+        <ul className="suggestions" style={this.state.showSuggestions ? {}: { display: 'none' }}> 
             {this.state.suggestions.map((suggestion) => ( //mapping through array and returning singular suggestion
                 <li 
                 key={suggestion}

@@ -60,5 +60,14 @@ describe('<CitySearch /> component', () => {
         CitySearchWrapper.find('.city').simulate('focus');
         expect(CitySearchWrapper.state('showSuggestions')).toBe(true); // expecting the value of the showSuggestions state to be true 
         expect(CitySearchWrapper.find('.suggestions').prop('style')).not.toEqual({ display: 'none' });
-      }); // --------- showSuggestion state will be used as a boolean flag to determine whether to show the suggestions list or not.
+    }); // --------- showSuggestion state will be used as a boolean flag to determine whether to show the suggestions list or not.
+    test("selecting a suggestion should hide the suggestions list", () => {
+        CitySearchWrapper.setState({
+            query: 'Berlin',
+            showSuggestions: undefined // manually change showSuggestions back to undefined due to prev. test
+        });
+        CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
+        expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
+        expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' }); //check whether the suggestions list is hidden
+    });
 });
