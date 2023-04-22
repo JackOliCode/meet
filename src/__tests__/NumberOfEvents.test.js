@@ -13,8 +13,8 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberOfEventsWrapper.find('.numberInput')).toHaveLength(1);
     });
     test('rendered number input is equal to 32', () => {
-        const query = NumberOfEventsWrapper.state('query');
-        expect(NumberOfEventsWrapper.find('.numberInput').prop('value')).toBe(query);
+        const numberOfEvents = NumberOfEventsWrapper.state('numberOfEvents');
+        expect(NumberOfEventsWrapper.find('.numberInput').prop('value')).toBe(numberOfEvents);
     });
     test('change state when number input changes', () => {
         NumberOfEventsWrapper.setState({
@@ -22,10 +22,6 @@ describe('<NumberOfEvents /> component', () => {
         });
         const eventObject = { target: { value: 16 }};
         NumberOfEventsWrapper.find('.numberInput').simulate('change', eventObject);
-        expect(NumberOfEventsWrapper.state('query')).toBe(16);
+        expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(16);
 });
 });
-
-
-
-// think I need to extract the li items from EventList and then 
