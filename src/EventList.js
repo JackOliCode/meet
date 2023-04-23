@@ -8,8 +8,9 @@ class EventList extends Component {
         return (
             <ul className='EventList'>
                 {slicedEvents.map(event => //maps all events and returns each as a li
-                    <li key={event.id}>
-                        <Event event={event} />
+                    <li key={event.id} className="list_container">
+                        <Event event={event}
+                        />
                     </li>
                 )}
             </ul>

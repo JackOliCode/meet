@@ -117,10 +117,14 @@ input[type="number"] {
 .EventList {
   display: grid;
   grid-template-columns: 47.5% 47.5%;
-  grid-gap: 5%;
+  column-gap: 5%;
   margin: 0 12.5%;
 }
 
+.list_container {
+  height: 100%;
+  border: 8px solid green;
+}
 
 .event {
   padding: 10px;
