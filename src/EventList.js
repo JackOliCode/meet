@@ -3,10 +3,11 @@ import Event from './Event';
 
 class EventList extends Component {
     render() {
-        const { events } = this.props;
+        const { events, numberOfEvents } = this.props; //take NOE as a prop
+        const slicedEvents = events.slice(0, numberOfEvents); // The slice method returns a new array with the first numberOfEvents elements of the original events array.
         return (
             <ul className='EventList'>
-                {events.map (event => //maps all events and returns each as a li
+                {slicedEvents.map(event => //maps all events and returns each as a li
                     <li key={event.id}>
                         <Event event={event} />
                     </li>
