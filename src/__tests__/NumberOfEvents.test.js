@@ -6,11 +6,11 @@ import App from '../App';
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsWrapper;
 
-     beforeAll(() => {
-    NumberOfEventsWrapper = shallow(
-      <NumberOfEvents numberOfEvents={32} updateNumberOfEvents={() => {}} />
-    );
-  });
+    beforeAll(() => {
+        NumberOfEventsWrapper = shallow(
+          <NumberOfEvents numberOfEvents={32} updateNumberOfEvents={() => {}} />
+        );
+      });
 
 
     test('render number input', () => {
@@ -27,14 +27,4 @@ describe('<NumberOfEvents /> component', () => {
         NumberOfEventsWrapper.find('.numberInput').simulate('change', eventObject2);
         expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(32);
       });
-    // ------- INTEGRATION TESTS START HERE --------- //
-    describe('<NumberOfEvents /> integration', () => {
-        test('NumberOfEvents passes "numberOfEvents" as a prop to App', () => {
-            const NumberOfEventsWrapper = mount(<NumberOfEvents />);
-            const NOEnumberOfEventsState = NumberOfEventsWrapper.state('numberOfEvents');
-            expect(NOEnumberOfEventsState).not.toEqual(undefined);
-            expect(NumberOfEventsWrapper.find(App).props().numberOfEvents).toEqual(NOEnumberOfEventsState);
-            NumberOfEventsWrapper.unmount();
-            });
-        });
     });

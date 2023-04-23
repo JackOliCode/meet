@@ -67,4 +67,17 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
+  // - -------------------------- NumberOfEvents int. testing starts here -----------------------------//
+  test('App passes "numberOfEvents" state as a prop to NumberOfEvents', () => {
+    const AppWrapper = mount(<App />);
+    const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
+    expect(AppNumberOfEventsState).not.toEqual(undefined);
+    expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberOfEventsState);
+    AppWrapper.unmount();
+  });
+  test('App component updates numberOfEvents state when NumberOfEvents component is used', () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.find('.numberInput').simulate('change', { target: { value: 10 } }); // simulate a change event with a new value
+    expect(AppWrapper.state('numberOfEvents')).toEqual(10); // check if the numberOfEvents state has been updated in the App component
+  });
 });
