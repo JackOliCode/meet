@@ -25,7 +25,8 @@ p {
 }
 
 body{
-  background-color:#0D0628;
+  background: rgb(244,216,176);
+  background: linear-gradient(0deg, rgba(244,216,176,1) 0%, rgba(78,42,223,1) 22%, rgba(13,6,40,1) 29%);
 }
 
 input[type="text"],
