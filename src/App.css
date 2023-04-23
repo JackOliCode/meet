@@ -1,3 +1,9 @@
+:root{
+  --bg-purple: #0d0628;
+  --primary-red: #A81024;
+  --sec-gold: #eec180;
+  --input-purple: #4e2adf;
+}
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
   text-align: center;
@@ -26,41 +32,66 @@ p {
 
 body{
   background: rgb(244,216,176);
-  background: linear-gradient(0deg, rgba(244,216,176,1) 0%, rgba(78,42,223,1) 22%, rgba(13,6,40,1) 29%);
+  background: linear-gradient(0deg, rgba(238,193,128,100) 0%, rgba(78,42,223,1) 22%, rgba(13,6,40,1) 29%);
+  min-height: 100vh;
+  margin: 0;
 }
 
 input[type="text"],
 input[type="number"] {
-  padding: 8px 6px 8px 10px;
+  box-sizing: border-box;
   border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
+  border: none;
   font-size: 14px;
   line-height: 20px;
   align-self: center;
   height: 38px;
+  background-color: var(--sec-gold);
+  color: var(--bg-purple);
+  text-align: center;
 }
 
 .city {
   width: 250px;
 }
 
+.numberInput {
+  width: 125px;
+  margin-left: 5%;
+}
+
+.search_inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 5%;
+  margin-top: 2%;
+}
+
+.numberOfEvents {
+  width: 200px;
+  margin: 20px 0;  /* remove "auto" from margin and add 20px top and bottom margins */
+  text-align: center;
+}
+
+
 .CitySearch {
   display: flex;
-  flex-direction: column;
-  flex-basis: 300px;
-  max-width: 300px;
-  margin: auto;
+  flex-direction: row;
+  align-items: center;  /* add this line to center items vertically */
+  justify-content: space-between;  /* add this line to spread the items horizontally */
+  max-width: 50%;
   position: relative;
 }
 
 .suggestions {
-  width: 250px;
   position: absolute;
   z-index: 2;
-  align-self: center;
+  width: 100%;
   margin: 0;
   top: 43px;
+  left: 0;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
@@ -68,7 +99,7 @@ input[type="number"] {
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #eee;
+  background-color: var(--sec-gold);
   cursor: default;
 }
 
@@ -78,16 +109,28 @@ input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+  background-color: var(--primary-red);
 }
 
+/* -------------- EventList grid starts here ------------------------*/
+
+.EventList {
+  display: grid;
+  grid-template-columns: 47.5% 47.5%;
+  grid-gap: 5%;
+  margin: 0 12.5%;
+}
+
+
 .event {
-  padding: 10px 10px 35px;
+  padding: 10px;
   margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid var(--sec-gold);
   border-radius: 4px;
-  position: relative;
+  color: var(--sec-gold);
+  background-color: var(--primary-red);
+  height: auto;
 }
 
 .details-btn {
@@ -119,10 +162,43 @@ input[type="number"] {
   overflow-x: hidden;
 }
 
-.numberOfEvents {
-  width: 200px;
-  margin: 20px auto;
+.event_details {
+  margin: 10px;
+  padding: 15px 30px;
   text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: var(--input-purple);
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, rgba(231,152,37,1) 0%, rgba(238,193,128,1) 51%, rgba(231,152,37,1) 100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.event_details:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: var(--bg-purple);
+  text-decoration: none;
+}
+
+.event_details:active {
+  transform: scale(0.95);
+}
+
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
 }
 
 .button-wrapper {
@@ -214,5 +290,20 @@ input[type="number"] {
     max-width: 50%;
     min-width: auto;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 840px) {
+  .EventList {
+    grid-template-columns: 100%;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .search_inputs {
+    flex-direction: column;
+  }
+  .CitySearch {
+    margin: 3%;
   }
 }

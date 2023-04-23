@@ -25,7 +25,7 @@ class Event extends Component {
             <span className="event_location">{event.location}</span>;
         </div>
         {showDetails && ( //conditional rendering statement which lets me conditionally render a block of elements based on a certain condition.
-            <>
+            <div className="expanded_event">
             <h2 className="aboutEvent">About Event</h2>
             <a
               className="event_link"
@@ -33,7 +33,7 @@ class Event extends Component {
                 See details on Google Calendar
               </a>
             <p className="event_description">{event.description}</p>
-            </>
+            </div>
         )} 
         <button className="event_details" onClick={this.handleDetailsClick}>Details</button>
     </div>
