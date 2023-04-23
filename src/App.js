@@ -26,16 +26,20 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => { // added eventCount 
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
         events :
         events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents
+        const filteredEvents = locationEvents.slice(0, eventCount || this.state.numberOfEvents);
+        this.setState({
+          events: filteredEvents,
+          location: location || this.state.location,
+          numberOfEvents: eventCount || this.state.numberOfEvents
       });
     });
   }
+
 
   updateNumberOfEvents = (numberOfEvents) => {
     this.setState({ numberOfEvents });
@@ -55,4 +59,3 @@ class App extends Component {
 export default App;
 
 
-// consider whether you need to pass events prop to NOE events={this.state.events} ?
