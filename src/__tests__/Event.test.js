@@ -19,7 +19,7 @@ describe('<Event /> component', () => { // scope only check Event component
         expect(EventWrapper.find('.event_time')).toHaveLength(1); // make sure the event has a time element
         expect(EventWrapper.find('.event_summary')).toHaveLength(1); // make sure the event has a summary element
         expect(EventWrapper.find('.event_location')).toHaveLength(1); // make sure the event has a location element
-        expect(EventWrapper.find('.event_details')).toHaveLength(1); // make sure the "Details" button is present  
+        expect(EventWrapper.find('.event_details_btn')).toHaveLength(1); // make sure the "Details" button is present  
     });
     test('renders extra info when "details" button clicked', () => {
         expect(EventWrapper.state('showDetails')).toBe(false); // make sure showDetails state is initially false
@@ -34,7 +34,7 @@ describe('<Event /> component', () => { // scope only check Event component
         expect(EventWrapper.find('.aboutEvent')).toHaveLength(1); 
         expect(EventWrapper.find('.event_link')).toHaveLength(1); 
         expect(EventWrapper.find('.event_description')).toHaveLength(1); 
-        EventWrapper.find('.event_details').simulate('click'); // re-sim another click to hide details (need to add another button)
+        EventWrapper.find('.event_details_btn').simulate('click'); // re-sim another click to hide details (need to add another button)
         expect(EventWrapper.state('showDetails')).toBe(false); // make sure showDetails state is now false
         expect(EventWrapper.find('.aboutEvent')).toHaveLength(0); // make sure the "About Event" heading is not present
         expect(EventWrapper.find('.event_link')).toHaveLength(0); // make sure the link to Google Calendar is not present
