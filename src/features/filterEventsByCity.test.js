@@ -18,17 +18,11 @@ defineFeature(feature, test => {
         });
         let AppWrapper;
         when('the user opens the app', () => {
-            
-            when('the user opens the app', () => {
             AppWrapper = mount(<App />);
             });
-
-        });
-
         then('the user should see the list of upcoming events.', () => {
             AppWrapper.update(); //update used as act of getting list is asychronous 
             expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
-        });
         });
     });
 
@@ -73,3 +67,5 @@ defineFeature(feature, test => {
             expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
         });
     });
+
+});
