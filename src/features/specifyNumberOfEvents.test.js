@@ -34,10 +34,9 @@ defineFeature(feature, test => {
             let NumberOfEventsWrapper = AppWrapper.find('NumberOfEvents');
             NumberOfEventsWrapper.find('.numberInput').simulate('change', { target: { value: 16 } });
             expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(16);
-
+        });
         then('The specified number of events is shown to the user', () => {
             expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
         });
     });
     });
-});
