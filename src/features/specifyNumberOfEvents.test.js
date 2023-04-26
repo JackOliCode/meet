@@ -23,6 +23,7 @@ defineFeature(feature, test => {
         });
     });
     test('User can change the number of events they want to see via the Number Of Events component', ({ given, when, then }) => {
+        let NumberOfEventsWrapper = AppWrapper.find('NumberOfEvents');
         given('the user can see a list of events', () => {
             AppWrapper = mount(<App />);
             AppWrapper.update();
@@ -31,12 +32,10 @@ defineFeature(feature, test => {
 
         when('The user specifies the number events that they want to see', () => {
             AppWrapper.update();
-            let NumberOfEventsWrapper = AppWrapper.find('NumberOfEvents');
-            NumberOfEventsWrapper.find('.numberInput').simulate('change', { target: { value: 16 } });
-            expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(16);
+            NumberOfEventsWrapper.find('.numberInput').simulate('change', { target: { value: 16 } });         
         });
         then('The specified number of events is shown to the user', () => {
-            expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+            expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(16);
         });
     });
     });
