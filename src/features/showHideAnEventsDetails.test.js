@@ -2,9 +2,7 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
 import { mount } from 'enzyme';
 import App from '../App';
-import Event from '../Event';
 import { mockData } from '../mock-data';
-import { extractLocations } from '../api';
 const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 
 defineFeature(feature, test => {
