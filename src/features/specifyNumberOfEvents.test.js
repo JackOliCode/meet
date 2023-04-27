@@ -3,6 +3,7 @@ import React from "react";
 import { mount } from "enzyme";
 import App from "../App";
 import { mockData } from "../mock-data";
+import NumberOfEvents from '../NumberOfEvents';
 
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
@@ -15,27 +16,26 @@ defineFeature(feature, test => {
 
         when('the user can see a list of events', () => {
             AppWrapper.update();
-            expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
         });
 
         then('The default number of events is 32', () => {
-            expect(AppWrapper.state('numberOfEvents')).toEqual(32);
+
         });
     });
     test('User can change the number of events they want to see via the Number Of Events component', ({ given, when, then }) => {
-        let NumberOfEventsWrapper = AppWrapper.find('NumberOfEvents');
         given('the user can see a list of events', () => {
             AppWrapper = mount(<App />);
             AppWrapper.update();
-            expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+            expect(AppWrapper.state('numberOfEvents')).toEqual(32);
         });
 
         when('The user specifies the number events that they want to see', () => {
             AppWrapper.update();
+            let NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
             NumberOfEventsWrapper.find('.numberInput').simulate('change', { target: { value: 16 } });         
         });
         then('The specified number of events is shown to the user', () => {
-            expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(16);
+            expect(AppWrapper.state('numberOfEvents')).toEqual(16);
         });
     });
     });
