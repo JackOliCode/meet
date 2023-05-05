@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InfoAlert } from './alert';
+import { InfoAlert } from './Alert';
 
 
 
