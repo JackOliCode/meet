@@ -282,6 +282,9 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
+.Alert {
+  font-weight: bold;
+}
 
 
 @media only screen and (min-width: 992px) {
