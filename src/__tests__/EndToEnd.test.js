@@ -7,8 +7,9 @@ import { extractLocations } from "../api";
 describe('show/hide an event details', () => {
     let browser;
     let page;
+    jest.setTimeout(30000);
     beforeAll(async () => {
-      jest.setTimeout(30000);
+      
       browser = await puppeteer.launch(); // launches browser via Puppeteer
       page = await browser.newPage();
       await page.goto('http://localhost:3000/'); //navigate to page
