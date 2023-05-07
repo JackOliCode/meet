@@ -46,6 +46,12 @@ export const extractLocations = (events) => {
       NProgress.done();
       return mockData;
     }
+
+    if (!navigator.onLine) {
+      const data = localStorage.getItem("lastEvents");
+      NProgress.done();
+      return data?JSON.parse(events).events:[];;
+    }
    
     const token = await getAccessToken();
   
@@ -55,8 +61,8 @@ export const extractLocations = (events) => {
       const result = await axios.get(url);
       if (result.data) {
         var locations = extractLocations(result.data.events);
-        localStorage.setItem("lastEvents", JSON.stringify(result.data));
-        localStorage.setItem("locations", JSON.stringify(locations));
+        localStorage.setItem('lastEvents', JSON.stringify(result.data));
+        localStorage.setItem('locations', JSON.stringify(locations));
       }
       NProgress.done();
       return result.data.events;
