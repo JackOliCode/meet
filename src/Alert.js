@@ -34,6 +34,14 @@ class ErrorAlert extends Alert {
         this.color = 'red';
     }
 }
+// ---------------Warning Alert subclass -------------//
+class WarningAlert extends Alert {
+    constructor(props) {
+      super(props);
+      this.color = 'orange';
+  }
+}
 
   export { InfoAlert }
   export { ErrorAlert }
+  export {WarningAlert}
