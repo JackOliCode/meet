@@ -32,8 +32,9 @@ handleInputChanged = (event) => { // event handler for <input> for the change ev
 handleItemClicked = (suggestion) => {
     this.setState({
         query: suggestion,
-        showSuggestions: false
-    });
+        showSuggestions: false,
+        infoText: ''
+      });
 
 
     this.props.updateEvents(suggestion);
