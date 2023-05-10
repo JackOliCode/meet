@@ -6,6 +6,10 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 import './nprogress.css';
 import WarningAlert from './Alert';
+import WelcomeScreen from './WelcomeScreen';
+import { checkToken } from './api';
+import { getAccessToken } from './api';
+
 
 class App extends Component {
   state = {
@@ -13,12 +17,21 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     isOffline: !navigator.onLine, // Add a flag to track the online/offline status
+    showWelcomeScreen: undefined
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
+
+      const accessToken = localStorage.getItem('access_token');
+      const isTokenValid = (await checkToken(accessToken)).error ? false :
+      true;
+      const searchParams = new URLSearchParams(window.location.search);
+      const code = searchParams.get("code");
+      this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+
     getEvents().then((events) => {
-      if (this.mounted) {
+     if (this.mounted) {
         this.setState({
           events,
           locations: extractLocations(events),
@@ -67,6 +80,7 @@ handleOnlineStatus = () => {
   };
 
   render() {
+      if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
         {this.state.isOffline && <WarningAlert />}
@@ -75,6 +89,8 @@ handleOnlineStatus = () => {
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
         </div>
         <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
+                      getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
