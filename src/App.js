@@ -9,7 +9,7 @@ import WarningAlert from './Alert';
 import WelcomeScreen from './WelcomeScreen';
 import { checkToken } from './api';
 import { getAccessToken } from './api';
-
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 class App extends Component {
   state = {
@@ -81,10 +81,10 @@ handleOnlineStatus = () => {
 
   // --- GET DATA FUNCTION -- //
   getData = () => {
-    const {locations, events} = this.state;
+    const {locations, events} = this.state; // uses the locations and events saved in your state
     const data = locations.map((location)=>{
-      const number = events.filter((event) => event.location === location).length
-      const city = location.split(', ').shift()
+      const number = events.filter((event) => event.location === location).length // map the locations and filter the events by each location to get the length of the resulting array.
+      const city = location.split(', ').shift() //.shift =  shorten the location and remove any unnecessary information
       return {city, number};
     })
     return data;
@@ -99,6 +99,24 @@ handleOnlineStatus = () => {
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
         </div>
+      
+        <h4>Events in each city</h4>
+
+         <ScatterChart
+          width={400}
+          height={400}
+          margin={{
+            top: 20, right: 20, bottom: 20, left: 20,
+          }}
+        >
+          <CartesianGrid />
+          <XAxis type="category" dataKey="city" name="city" />
+          <YAxis type="number" dataKey="number" name="number of events" />
+          <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+          <Scatter data={this.getData()} fill="#8884d8" />
+        </ScatterChart>
+       
+
         <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
                       getAccessToken={() => { getAccessToken() }} />
