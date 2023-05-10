@@ -36,12 +36,15 @@ class ErrorAlert extends Alert {
 }
 // ---------------Warning Alert subclass -------------//
 class WarningAlert extends Alert {
-    constructor(props) {
-      super(props);
-      this.color = 'orange';
+  render() {
+    return (
+      <div className="alert" style={{ backgroundColor: 'orange' }}>
+        You are currently offline. <br/> Access to the application might be limited.
+      </div>
+    );
   }
 }
 
   export { InfoAlert }
   export { ErrorAlert }
-  export {WarningAlert}
+  export default WarningAlert;
