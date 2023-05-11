@@ -100,6 +100,7 @@ handleOnlineStatus = () => {
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
         </div>
+
         <div className='data-vis-wrapper'>
         <EventGenre events={this.state.events} />
         <ResponsiveContainer height={400} >
@@ -112,6 +113,7 @@ handleOnlineStatus = () => {
           </ScatterChart>
         </ResponsiveContainer>
       </div>
+
         <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
                       getAccessToken={() => { getAccessToken() }} />
