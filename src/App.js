@@ -102,9 +102,9 @@ handleOnlineStatus = () => {
         </div>
 
         <div className='data-vis-wrapper'>
-          <EventGenre events={this.state.events} />
+          <EventGenre events={this.state.events} className='event-genre' />
           <ResponsiveContainer height={400} >
-            <ScatterChart margin={{top: 20, right: 20, bottom: 20, left: 20,}}>
+            <ScatterChart className='scatterchart' margin={{top: 20, right: 20, bottom: 20, left: 20,}}>
               <CartesianGrid />
               <XAxis type="category" dataKey="city" name="City" />
               <YAxis allowDecimals={false} type="number" dataKey="number" name="Number of Events" />
@@ -115,8 +115,7 @@ handleOnlineStatus = () => {
       </div>
 
         <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-                      getAccessToken={() => { getAccessToken() }} />
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
@@ -125,3 +124,5 @@ handleOnlineStatus = () => {
 export default App;
 
 
+// <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> 
+// the above is here as I need to remove the welcome page get npm run start to work 

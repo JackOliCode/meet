@@ -320,3 +320,9 @@ input[type="number"] {
     height: 0 !important;
   }
 }
+
+@media (max-width: 991px) {
+  .recharts-responsive-container {
+    text-align: center;
+  }
+}
