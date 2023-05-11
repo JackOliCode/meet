@@ -286,6 +286,11 @@ input[type="number"] {
   font-weight: bold;
 }
 
+.event-genre {
+  margin-left: 10% !important;
+  max-width: 400px !important;
+}
+
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
@@ -324,5 +329,12 @@ input[type="number"] {
 @media (max-width: 991px) {
   .recharts-responsive-container {
     text-align: center;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .data-vis-wrapper .recharts-responsive-container {
+    max-width: 75%;
+    margin-top: 0;
   }
 }
