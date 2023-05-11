@@ -313,3 +313,10 @@ input[type="number"] {
     margin: 3%;
   }
 }
+
+@media (max-width: 650px) {
+  .data-vis-wrapper {
+    display: none;
+    height: 0 !important;
+  }
+}
