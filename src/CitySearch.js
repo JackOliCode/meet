@@ -39,6 +39,23 @@ handleItemClicked = (suggestion) => {
 
     this.props.updateEvents(suggestion);
 }
+/// ---------- code to add event listener to close suggestions list by clicking outside list ---// 
+componentDidMount() {
+  document.addEventListener("click", this.handleClickOutside);
+}
+
+componentWillUnmount() {
+  document.removeEventListener("click", this.handleClickOutside);
+}
+
+handleClickOutside = (event) => {
+  if (!event.target.closest(".CitySearch")) {
+    this.setState({
+      showSuggestions: false,
+      infoText: ""
+    });
+  }
+};
 
 render() {
     return (
