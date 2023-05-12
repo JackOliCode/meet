@@ -42,17 +42,18 @@ handleItemClicked = (suggestion) => {
 
 render() {
     return (
+      <div>
+      <InfoAlert text={this.state.infoText}/>
+            
       <div className="CitySearch">
-        <InfoAlert text={this.state.infoText}/>
-            <input
-                type='text'
-                className='city'
-                value={this.state.query}
-                onChange={this.handleInputChanged}
-                onFocus={() => { this.setState({ showSuggestions: true }) }} 
-                placeholder='Search by City'
-            />
-      
+        <input
+          type='text'
+          className='city'
+          value={this.state.query}
+          onChange={this.handleInputChanged}
+          onFocus={() => { this.setState({ showSuggestions: true }) }} 
+          placeholder='Search by City'
+        />
         <ul className="suggestions" style={this.state.showSuggestions ? {}: { display: 'none' }}> 
             {this.state.suggestions.map((suggestion) => ( //mapping through array and returning singular suggestion
                 <li 
@@ -64,6 +65,7 @@ render() {
                 <b>See all cities</b>
             </li>
         </ul>
+      </div>
       </div>
     );
   }

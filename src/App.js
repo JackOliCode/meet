@@ -92,7 +92,7 @@ handleOnlineStatus = () => {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+   // if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
         {this.state.isOffline && <WarningAlert />}
@@ -114,7 +114,7 @@ handleOnlineStatus = () => {
             </ScatterChart>
           </ResponsiveContainer>
       </div>
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+      
         <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
       </div>
     );
