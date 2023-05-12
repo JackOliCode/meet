@@ -92,10 +92,11 @@ handleOnlineStatus = () => {
   };
 
   render() {
-     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
         {this.state.isOffline && <WarningAlert />}
+        <div className='app-heading'><h1>It's time to Meet App</h1></div>
         <div className='search_inputs'>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
@@ -113,9 +114,8 @@ handleOnlineStatus = () => {
             </ScatterChart>
           </ResponsiveContainer>
       </div>
-
-        <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+        <EventList events={this.state.events} numberOfEvents={this.state.numberOfEvents} />
       </div>
     );
   }
