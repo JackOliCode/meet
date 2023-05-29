@@ -329,16 +329,15 @@ input[type="number"] {
   }
 }
 
-@media (max-width: 650px) {
-  .data-vis-wrapper {
-    display: none;
-    height: 0 !important;
-  }
-}
-
 @media (max-width: 991px) {
   .recharts-responsive-container {
     text-align: center;
+  }
+}
+
+@media (max-width: 950px ) {
+  .event-genre {
+    margin-left: 0% !important;
   }
 }
 
